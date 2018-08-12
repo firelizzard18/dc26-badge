@@ -67,15 +67,17 @@ A response has a type of `0xC0` and a message with the form `00 01 00 0X 00` whe
 | Speaker | `55 55 42 42 c0 af 05 00 01 00 07 00 59 42` | `0x07` | `0x5942`  |
 | CFP     | `55 55 42 42 c0 af 05 00 01 00 08 00 49 7c` | `0x08` | `0x497c`  |
 
+## Building Sketches
+
+To compile the included Arduino sketches, each sketch must be in its own folder, named the same as the sketch. For example, to compile `dc26badgedirect.ino`, it must be in a directory named `dc26badgedirect`: `dc26badgedirect/dc26badgedirect.ino`. Arduino is peculiar like that.
+
 ## Harvesting
 
-In order to harvest these packets, Ethan removed the battery holders and connected two leads to TX and RX of the connector. Those leads, along with power (3.3v) and ground, were connected to a Teensy 3.0 (an Arduino-compatible microcontroller board). The Teensy was programmed to capture all UART communication and write it to EEPROM. The Teensy/Arduino sketch will be uploaded soon.
+In order to harvest these packets, Ethan removed the battery holders and connected two leads to TX and RX of the connector. Those leads, along with power (3.3v) and ground, were connected to a Teensy 3.0 (an Arduino-compatible microcontroller board). The Teensy was programmed to capture all UART communication and write it to EEPROM. See [dc26badgestorage.ino](dc26badgestorage.ino).
 
 ## Replaying
 
-To replay messages to a badge, connect the badge's RX pin to the TX pin of an Arduino. Then transmit the message. It's that simple.
-
-We are working on a sketch that will cyclicly replay all 8 badge messages. This will be uploaded once it's done.
+To replay messages to a badge, connect the badge's RX pin to the TX pin of an Arduino. Then transmit the message. It's that simple. See [dc26badgereplay.ino](dc26badgereplay.ino).
 
 ## Notes
 
