@@ -1,6 +1,10 @@
 // stty -F /dev/ttyACM0 9600 raw -echo -echoe -echok -echoctl -echoke
 
+#include <EEPROM.h>
+
 #define ARRAY_SIZE(x) (sizeof(x)/sizeof(x[0]))
+
+uint8_t msgsel = 0;
 
 void setup() {
   // put your setup code here, to run once:
@@ -10,6 +14,7 @@ void setup() {
   Serial3.begin(9600);
   pinMode(13, OUTPUT);
 //  pinMode(9, INPUT);
+  msgsel = EEPROM.read(0);
 }
 
 int msgidx = 0;
@@ -48,8 +53,20 @@ void loop() {
     Serial.printf("%02x ", (int)(uint8_t)msgs[msgidx][i]);
   }
   Serial.printf("\n");
-  msgidx++;
-  msgidx %= ARRAY_SIZE(msgs);
+  if(Serial.available())
+  {
+    msgsel = Serial.read();
+    EEPROM.write(0, msgsel);
+  }
+  if(msgsel == 0)
+  {
+    msgidx++;
+    msgidx %= ARRAY_SIZE(msgs);
+  }
+  else if(msgsel < ARRAY_SIZE(msgs))
+  {
+    msgidx = msgsel - 1;
+  }
   delay(100);
   digitalWrite(13, led);
   led = !led;
