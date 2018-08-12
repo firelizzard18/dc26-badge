@@ -54,18 +54,31 @@ A request has a type of `0x80` and an empty message: `55 55 42 42 80 af 00 11 cb
 
 ## Response
 
-A response has a type of `0xC0` and a message with the form `00 01 00 0X 00` where X is the badge number, 1-8 (see Badges above).
+A response has a type of `0xC0` and a message with the form `00 01 00 0X 0Y` where X is the badge number, 1-8 (see Badges above); where Y is some state (0 for Human N off, 1 for on).
 
-| Badge   | Packet                                      | Number | Signature |
-| ------- | ------------------------------------------- | ------ | --------- |
-| Human   | `55 55 42 42 c0 af 05 00 01 00 01 00 f3 e4` | `0x01` | `0xf3e4`  |
-| Contest | `55 55 42 42 c0 af 05 00 01 00 02 00 a6 b7` | `0x02` | `0xa6b7`  |
-| Goon    | `55 55 42 42 c0 af 05 00 01 00 03 00 95 86` | `0x03` | `0x9586`  |
-| Artist  | `55 55 42 42 c0 af 05 00 01 00 04 00 0c 11` | `0x04` | `0x0c11`  |
-| Vendor  | `55 55 42 42 c0 af 05 00 01 00 05 00 3f 20` | `0x05` | `0x3f20`  |
-| Press   | `55 55 42 42 c0 af 05 00 01 00 06 00 6a 73` | `0x06` | `0x6a73`  |
-| Speaker | `55 55 42 42 c0 af 05 00 01 00 07 00 59 42` | `0x07` | `0x5942`  |
-| CFP     | `55 55 42 42 c0 af 05 00 01 00 08 00 49 7c` | `0x08` | `0x497c`  |
+| Badge   | Packet                                      | Number | Signature | Notes           |
+| ------- | ------------------------------------------- | ------ | --------- | --------------- |
+| Human   | `55 55 42 42 c0 af 05 00 01 00 01 00 f3 e4` | `0x01` | `0xf3e4`  | Recorded, w/o N |
+| Contest | `55 55 42 42 c0 af 05 00 01 00 02 00 a6 b7` | `0x02` | `0xa6b7`  | Recorded, w/o N |
+| Goon    | `55 55 42 42 c0 af 05 00 01 00 03 00 95 86` | `0x03` | `0x9586`  | Recorded, w/o N |
+| Artist  | `55 55 42 42 c0 af 05 00 01 00 04 00 0c 11` | `0x04` | `0x0c11`  | Recorded, w/o N |
+| Vendor  | `55 55 42 42 c0 af 05 00 01 00 05 00 3f 20` | `0x05` | `0x3f20`  | Recorded, w/o N |
+| Press   | `55 55 42 42 c0 af 05 00 01 00 06 00 6a 73` | `0x06` | `0x6a73`  | Recorded, w/o N |
+| Speaker | `55 55 42 42 c0 af 05 00 01 00 07 00 59 42` | `0x07` | `0x5942`  | Recorded, w/o N |
+| CFP     | `55 55 42 42 c0 af 05 00 01 00 08 00 49 7c` | `0x08` | `0x497c`  | Recorded, w/o N |
+|         |                                             |        |           |                 |
+| Human   | `55 55 42 42 c0 af 05 00 01 00 01 01 e3 c5` | `0x01` | `0xe3c5`  | Recorded, w/ N  |
+| Contest | `55 55 42 42 c0 af 05 00 01 00 02 01 b6 96` | `0x02` | `0xb696`  | Generated, w/ N |
+| Goon    | `55 55 42 42 c0 af 05 00 01 00 03 01 85 a7` | `0x03` | `0x85a7`  | Generated, w/ N |
+| Artist  | `55 55 42 42 c0 af 05 00 01 00 04 01 1c 30` | `0x04` | `0x1c30`  | Generated, w/ N |
+| Vendor  | `55 55 42 42 c0 af 05 00 01 00 05 01 2f 01` | `0x05` | `0x2f01`  | Generated, w/ N |
+| Press   | `55 55 42 42 c0 af 05 00 01 00 06 01 7a f2` | `0x06` | `0x7af2`  | Generated, w/ N |
+| Speaker | `55 55 42 42 c0 af 05 00 01 00 07 01 49 63` | `0x07` | `0x4963`  | Generated, w/ N |
+| CFP     | `55 55 42 42 c0 af 05 00 01 00 08 01 59 5d` | `0x08` | `0x595d`  | Generated, w/ N |
+
+### Notes
+ * No change in response when U7 chip is flipped.
+ * No change in response when train is activated.
 
 ## Building Sketches
 
