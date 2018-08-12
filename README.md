@@ -93,6 +93,9 @@ cat /dev/ttyACM0
 echo message > /dev/ttyACM0
 ```
 
+## Photo
+![Omni Badginator](omnibadginator.jpg)
+
 ## License
 
 Copyright (C) 2018 Ethan Reesor, Cody Creager
