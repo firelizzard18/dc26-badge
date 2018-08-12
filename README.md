@@ -4,6 +4,8 @@ The DefCon 26 official badges can communicate with each other via baginal interc
 
 Badge 'unlock' packets are trivial to replay.
 
+**More details and code to follow soon.**
+
 ## Badges
 
   1. Human
