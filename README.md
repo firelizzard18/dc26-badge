@@ -16,17 +16,26 @@ Badge 'unlock' packets are trivial to replay.
   6. Press
   7. Speaker
   8. CFP (Call For Papers)
+  
+## Connector Pinout
+
+From top to bottom, the pinout of the baginal intercourse connector is:
+
+  * RX (pin 1 of the µC)
+  * Ground
+  * Ground
+  * TX (pin 5 of the µC)
 
 ## Packet Structure
 
-| Length | Segment   | Value |
-| ------ | --------- | ----- |
-| 4      | Sync      | `"UUBB"` |
-| 1      | Type      | `0x80` or `0xC0` |
-| 1      | (magic)   | `0xAF` |
-| 1      | Length    | |
-| (len)  | Message   | |
-| 2      | (signature) | |
+| Length | Segment     | Value            |
+| ------ | ----------- | ---------------- |
+| 4      | Sync        | `"UUBB"`         |
+| 1      | Type        | `0x80` or `0xC0` |
+| 1      | (magic)     | `0xAF`           |
+| 1      | Length      |                  |
+| (len)  | Message     |                  |
+| 2      | (signature) |                  |
 
 The sync word is always `0x55554242` (ASCII `"UUBB"`). The type is `0x80` for requests and `0xC0` for responses. The purpose of the magic byte is unknown, but its value is always `0xAF`. The last two bytes (signature) are assumed to be a checksum of some sort.
 
@@ -48,6 +57,16 @@ A response has a type of `0xC0` and a message with the form `00 01 00 0X 00` whe
 | Press   | `55 55 42 42 c0 af 05 00 01 00 06 00 6a 73` | `0x06` | `0x6a73`  |
 | Speaker | `55 55 42 42 c0 af 05 00 01 00 07 00 59 42` | `0x07` | `0x5942`  |
 | CFP     | `55 55 42 42 c0 af 05 00 01 00 08 00 49 7c` | `0x08` | `0x497c`  |
+
+## Harvesting
+
+In order to harvest these packets, Ethan removed the battery holders and connected two leads to TX and RX of the connector. Those leads, along with power (3.3v) and ground, were connected to a Teensy 3.0 (an Arduino-compatible microcontroller board). The Teensy was programmed to capture all UART communication and write it to EEPROM. The Teensy/Arduino sketch will be uploaded soon.
+
+## Replaying
+
+To replay messages to a badge, connect the badge's RX pin to the TX pin of an Arduino. Then transmit the message. It's that simple.
+
+We are working on a sketch that will cyclicly replay all 8 badge messages. This will be uploaded once it's done.
 
 ## License
 
