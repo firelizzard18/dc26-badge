@@ -4,7 +4,16 @@ The DefCon 26 official badges can communicate with each other via baginal interc
 
 Badge 'unlock' packets are trivial to replay.
 
-**More details and code to follow soon.**
+## Story
+
+Cody (@rigel314) decided to use a logic analyzer to log the communications between two human badges, and later between a human and a goon badge. From this analysis, he determined that the protocol was UART and he guessed the packet structure. Ethan and Cody then connected a Teensy to the RX and TX pins of a human badge in order to log all of the inter-badge communications. They then proceeded to hunt down and connect with each type of badge. They then successfully used the Teensy to replay this data onto a human badge. Once the concept was proved, they connected the Teensy to an unpowered badge and used that to replay many more badges.
+
+And... it turns out [the protocol is documented](https://github.com/Wireb/badge_bus/wiki).
+
+## TODO
+
+  * Clean up the code
+  * Update this document to reflect [the protocol documentation](https://github.com/Wireb/badge_bus/wiki)
 
 ## Badges
 
