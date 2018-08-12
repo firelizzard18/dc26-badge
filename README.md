@@ -48,3 +48,9 @@ A response has a type of `0xC0` and a message with the form `00 01 00 0X 00` whe
 | Press   | `55 55 42 42 c0 af 05 00 01 00 06 00 6a 73` | `0x06` | `0x6a73`  |
 | Speaker | `55 55 42 42 c0 af 05 00 01 00 07 00 59 42` | `0x07` | `0x5942`  |
 | CFP     | `55 55 42 42 c0 af 05 00 01 00 08 00 49 7c` | `0x08` | `0x497c`  |
+
+## License
+
+Copyright (C) 2018 Ethan Reesor, Cody Creager
+
+Licensed under the MIT license (see the LICENSE file).
