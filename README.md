@@ -68,6 +68,20 @@ To replay messages to a badge, connect the badge's RX pin to the TX pin of an Ar
 
 We are working on a sketch that will cyclicly replay all 8 badge messages. This will be uploaded once it's done.
 
+## Notes
+
+In linux, the following command will allow you to use `echo`, `cat`, etc on the Teensy's serial connection. On your computer, the Teensy may not be `/dev/ttyACM0`.
+
+```bash
+stty -F /dev/ttyACM0 115200 raw -echo -echoe -echok -echoctl -echoke
+
+# read from the teensy
+cat /dev/ttyACM0
+
+# write to the teensy
+echo message > /dev/ttyACM0
+```
+
 ## License
 
 Copyright (C) 2018 Ethan Reesor, Cody Creager
